@@ -8,7 +8,8 @@
   "dependencies": {
     "@zxing/library": "^0.17.0",
     "husky": "^4.2.5",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "regenerator-runtime": "^0.13.5"
   },
   "scripts": {
     "compile": "parcel build index.js",
