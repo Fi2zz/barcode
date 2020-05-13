@@ -35865,6 +35865,7 @@ function setup() {
       console.log("Started continous decode from camera with id ".concat(selectedDeviceId));
     });
   }).catch(function (err) {
+    alert(err.message);
     console.error(err);
   });
 }

@@ -32,6 +32,7 @@ function setup() {
       });
     })
     .catch((err) => {
+      alert(err.message);
       console.error(err);
     });
 }
