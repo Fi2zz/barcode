@@ -1,25 +1,36 @@
 import "regenerator-runtime";
 import "webrtc-adapter";
-import { BrowserBarcodeReader } from "@zxing/library/esm";
+import {
+  BrowserBarcodeReader,
+  BrowserCodeReader,
+  //   MultiFormatReader,
+  BrowserMultiFormatReader,
+} from "@zxing/library/esm";
 function setup() {
-  const codeReader = new BrowserBarcodeReader();
-  document.getElementById("startButton").addEventListener("click", () => {
-    codeReader
-      .decodeOnceFromConstraints(
-        {
-          video: { facingMode: "environment", width: 320, height: 160 },
-        },
-        "video"
-      )
-      .then((result) => {
-        console.log(result);
-        document.getElementById("result").textContent = result.text;
-      })
-      .catch((err) => {
-        console.error(err);
-        document.getElementById("result").textContent = err;
-      });
-  });
+  const video = document.getElementById("video");
+
+  const { width: sw, height } = window.screen;
+
+  const width = sw * 0.8;
+
+  video.style.width = width + "px";
+  video.style.height = width + "px";
+  const codeReader = new BrowserMultiFormatReader();
+  codeReader
+    .decodeOnceFromConstraints(
+      {
+        video: { facingMode: "environment", width: width, height: width },
+      },
+      "video"
+    )
+    .then((result) => {
+      console.log(result);
+      document.getElementById("result").textContent = result.text;
+    })
+    .catch((err) => {
+      console.error(err);
+      document.getElementById("result").textContent = err;
+    });
 }
 
 window.addEventListener("load", () => setup());
