@@ -43127,7 +43127,7 @@ function setup() {
         document.getElementById("result").textContent = err;
       }
     });
-    console.log("Started continous decode from camera with id ".concat(selectedDeviceId));
+    document.getElementById("log").textContent = "Started continous decode from camera with id ".concat(selectedDeviceId);
   }).catch(function (err) {
     console.error(err);
   }); //   codeReader.decodeOnceFromConstraints(

@@ -4,8 +4,8 @@ import {
   BrowserBarcodeReader,
   BrowserCodeReader,
   //   MultiFormatReader,
-    BrowserMultiFormatReader,
-  NotFoundException
+  BrowserMultiFormatReader,
+  NotFoundException,
 } from "@zxing/library/esm";
 function setup() {
   const video = document.getElementById("video");
@@ -36,9 +36,9 @@ function setup() {
           }
         }
       );
-      console.log(
-        `Started continous decode from camera with id ${selectedDeviceId}`
-      );
+      document.getElementById(
+        "log"
+      ).textContent = `Started continous decode from camera with id ${selectedDeviceId}`;
     })
     .catch((err) => {
       console.error(err);
