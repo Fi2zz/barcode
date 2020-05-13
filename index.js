@@ -43,6 +43,7 @@ function setup() {
       ).textContent = `Started continous decode from camera with id ${selectedDeviceId}`;
     })
     .catch((err) => {
+      alert(err);
       console.error(err);
     });
 

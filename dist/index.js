@@ -43130,6 +43130,7 @@ function setup() {
     });
     document.getElementById("log").textContent = "Started continous decode from camera with id ".concat(selectedDeviceId);
   }).catch(function (err) {
+    alert(err);
     console.error(err);
   }); //   codeReader.decodeOnceFromConstraints(
   //     {
