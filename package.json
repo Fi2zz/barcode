@@ -9,7 +9,8 @@
     "@zxing/library": "^0.17.0",
     "husky": "^4.2.5",
     "parcel-bundler": "^1.12.4",
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "^0.13.5",
+    "webrtc-adapter": "^7.6.0"
   },
   "scripts": {
     "compile": "parcel build index.js",
