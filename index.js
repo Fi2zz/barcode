@@ -24,20 +24,16 @@ function setup() {
     .getVideoInputDevices()
     .then((videoInputDevices) => {
       selectedDeviceId = videoInputDevices[0].deviceId;
-      codeReader.decodeFromVideoDevice(
-        selectedDeviceId,
-        "video",
-        (result, err) => {
-          if (result) {
-            console.log(result);
-            document.getElementById("result").textContent = result.text;
-          }
-          if (err && !(err instanceof NotFoundException)) {
-            console.error(err);
-            document.getElementById("result").textContent = err;
-          }
+      codeReader.decodeFromVideoDevice(null, "video", (result, err) => {
+        if (result) {
+          console.log(result);
+          document.getElementById("result").textContent = result.text;
         }
-      );
+        if (err && !(err instanceof NotFoundException)) {
+          console.error(err);
+          document.getElementById("result").textContent = err;
+        }
+      });
       document.getElementById(
         "log"
       ).textContent = `Started continous decode from camera with id ${selectedDeviceId}`;

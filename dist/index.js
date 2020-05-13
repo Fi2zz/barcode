@@ -43117,7 +43117,7 @@ function setup() {
   var selectedDeviceId;
   codeReader.getVideoInputDevices().then(function (videoInputDevices) {
     selectedDeviceId = videoInputDevices[0].deviceId;
-    codeReader.decodeFromVideoDevice(selectedDeviceId, "video", function (result, err) {
+    codeReader.decodeFromVideoDevice(null, "video", function (result, err) {
       if (result) {
         console.log(result);
         document.getElementById("result").textContent = result.text;
