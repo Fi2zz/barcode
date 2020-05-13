@@ -43114,6 +43114,7 @@ function setup() {
   video.style.width = width + "px";
   video.style.height = width + "px";
   var codeReader = new _esm.BrowserMultiFormatReader();
+  var selectedDeviceId;
   codeReader.getVideoInputDevices().then(function (videoInputDevices) {
     selectedDeviceId = videoInputDevices[0].deviceId;
     codeReader.decodeFromVideoDevice(selectedDeviceId, "video", function (result, err) {

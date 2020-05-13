@@ -18,6 +18,8 @@ function setup() {
   video.style.height = width + "px";
   const codeReader = new BrowserMultiFormatReader();
 
+  let selectedDeviceId;
+
   codeReader
     .getVideoInputDevices()
     .then((videoInputDevices) => {
