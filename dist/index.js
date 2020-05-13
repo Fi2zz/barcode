@@ -43114,23 +43114,38 @@ function setup() {
   video.style.width = width + "px";
   video.style.height = width + "px";
   var codeReader = new _esm.BrowserMultiFormatReader();
-  codeReader.decodeOnceFromConstraints({
-    video: {
-      facingMode: "environment",
-      width: width,
-      height: width
-    }
-  }, "video", function (result, err) {
-    if (result) {
-      console.log(result);
-      document.getElementById("result").textContent = result.text;
-    }
+  codeReader.getVideoInputDevices().then(function (videoInputDevices) {
+    selectedDeviceId = videoInputDevices[0].deviceId;
+    codeReader.decodeFromVideoDevice(selectedDeviceId, "video", function (result, err) {
+      if (result) {
+        console.log(result);
+        document.getElementById("result").textContent = result.text;
+      }
 
-    if (err && !(err instanceof ZXing.NotFoundException)) {
-      console.error(err);
-      document.getElementById("result").textContent = err;
-    }
-  });
+      if (err && !(err instanceof _esm.NotFoundException)) {
+        console.error(err);
+        document.getElementById("result").textContent = err;
+      }
+    });
+    console.log("Started continous decode from camera with id ".concat(selectedDeviceId));
+  }).catch(function (err) {
+    console.error(err);
+  }); //   codeReader.decodeOnceFromConstraints(
+  //     {
+  //       video: { facingMode: "environment", width: width, height: width },
+  //     },
+  //     "video",
+  //     (result, err) => {
+  //       if (result) {
+  //         console.log(result);
+  //         document.getElementById("result").textContent = result.text;
+  //       }
+  //       if (err && !(err instanceof ZXing.NotFoundException)) {
+  //         console.error(err);
+  //         document.getElementById("result").textContent = err;
+  //       }
+  //     }
+  //   );
 }
 
 window.addEventListener("load", function () {
