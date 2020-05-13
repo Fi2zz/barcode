@@ -35843,10 +35843,16 @@ var _esm = require("@zxing/library/esm");
 
 function setup() {
   var codeReader = new _esm.BrowserBarcodeReader();
+  navigator.mediaDevices.getUserMedia({
+    video: {
+      facingMode: "environment"
+    }
+  });
   var selectedDeviceId;
   codeReader.getVideoInputDevices().then(function (videoInputDevices) {
     selectedDeviceId = videoInputDevices[0].deviceId;
     document.getElementById("startButton").addEventListener("click", function () {
+      alert("startbutton");
       codeReader.decodeOnceFromVideoDevice(selectedDeviceId, "video").then(function (result) {
         console.log(result);
         codeReader.reset();

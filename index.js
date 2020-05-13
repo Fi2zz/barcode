@@ -3,12 +3,17 @@ import { BrowserBarcodeReader } from "@zxing/library/esm";
 function setup() {
   const codeReader = new BrowserBarcodeReader();
 
+  navigator.mediaDevices.getUserMedia({
+    video: { facingMode: "environment" },
+  });
   let selectedDeviceId;
   codeReader
     .getVideoInputDevices()
     .then((videoInputDevices) => {
       selectedDeviceId = videoInputDevices[0].deviceId;
+
       document.getElementById("startButton").addEventListener("click", () => {
+        alert("startbutton");
         codeReader
           .decodeOnceFromVideoDevice(selectedDeviceId, "video")
           .then((result) => {
