@@ -43114,25 +43114,18 @@ function setup() {
   video.style.width = width + "px";
   video.style.height = width + "px";
   var codeReader = new _esm.BrowserMultiFormatReader();
-  var selectedDeviceId;
-  codeReader.getVideoInputDevices().then(function (videoInputDevices) {
-    selectedDeviceId = videoInputDevices[0].deviceId;
-    codeReader.decodeFromVideoDevice(null, "video", function (result, err) {
-      if (result) {
-        console.log(result);
-        document.getElementById("result").textContent = result.text;
-      }
+  codeReader.decodeFromVideoDevice(null, "video", function (result, err) {
+    if (result) {
+      console.log(result);
+      document.getElementById("result").textContent = result.text;
+    }
 
-      if (err && !(err instanceof _esm.NotFoundException)) {
-        console.error(err);
-        document.getElementById("result").textContent = err;
-      }
-    });
-    document.getElementById("log").textContent = "Started continous decode from camera with id ".concat(selectedDeviceId);
-  }).catch(function (err) {
-    alert(err);
-    console.error(err);
-  }); //   codeReader.decodeOnceFromConstraints(
+    if (err && !(err instanceof _esm.NotFoundException)) {
+      console.error(err);
+      document.getElementById("result").textContent = err;
+    }
+  });
+  document.getElementById("log").textContent = "Started continous decode from camera with id ".concat(selectedDeviceId); //   codeReader.decodeOnceFromConstraints(
   //     {
   //       video: { facingMode: "environment", width: width, height: width },
   //     },

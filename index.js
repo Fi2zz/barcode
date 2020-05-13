@@ -17,31 +17,19 @@ function setup() {
   video.style.width = width + "px";
   video.style.height = width + "px";
   const codeReader = new BrowserMultiFormatReader();
-
-  let selectedDeviceId;
-
-  codeReader
-    .getVideoInputDevices()
-    .then((videoInputDevices) => {
-      selectedDeviceId = videoInputDevices[0].deviceId;
-      codeReader.decodeFromVideoDevice(null, "video", (result, err) => {
-        if (result) {
-          console.log(result);
-          document.getElementById("result").textContent = result.text;
-        }
-        if (err && !(err instanceof NotFoundException)) {
-          console.error(err);
-          document.getElementById("result").textContent = err;
-        }
-      });
-      document.getElementById(
-        "log"
-      ).textContent = `Started continous decode from camera with id ${selectedDeviceId}`;
-    })
-    .catch((err) => {
-      alert(err);
+  codeReader.decodeFromVideoDevice(null, "video", (result, err) => {
+    if (result) {
+      console.log(result);
+      document.getElementById("result").textContent = result.text;
+    }
+    if (err && !(err instanceof NotFoundException)) {
       console.error(err);
-    });
+      document.getElementById("result").textContent = err;
+    }
+  });
+  document.getElementById(
+    "log"
+  ).textContent = `Started continous decode from camera with id ${selectedDeviceId}`;
 
   //   codeReader.decodeOnceFromConstraints(
   //     {
