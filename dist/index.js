@@ -43120,12 +43120,16 @@ function setup() {
       width: width,
       height: width
     }
-  }, "video").then(function (result) {
-    console.log(result);
-    document.getElementById("result").textContent = result.text;
-  }).catch(function (err) {
-    console.error(err);
-    document.getElementById("result").textContent = err;
+  }, "video", function (result, err) {
+    if (result) {
+      console.log(result);
+      document.getElementById("result").textContent = result.text;
+    }
+
+    if (err && !(err instanceof ZXing.NotFoundException)) {
+      console.error(err);
+      document.getElementById("result").textContent = err;
+    }
   });
 }
 

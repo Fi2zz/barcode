@@ -16,21 +16,22 @@ function setup() {
   video.style.width = width + "px";
   video.style.height = width + "px";
   const codeReader = new BrowserMultiFormatReader();
-  codeReader
-    .decodeOnceFromConstraints(
-      {
-        video: { facingMode: "environment", width: width, height: width },
-      },
-      "video"
-    )
-    .then((result) => {
-      console.log(result);
-      document.getElementById("result").textContent = result.text;
-    })
-    .catch((err) => {
-      console.error(err);
-      document.getElementById("result").textContent = err;
-    });
+  codeReader.decodeOnceFromConstraints(
+    {
+      video: { facingMode: "environment", width: width, height: width },
+    },
+    "video",
+    (result, err) => {
+      if (result) {
+        console.log(result);
+        document.getElementById("result").textContent = result.text;
+      }
+      if (err && !(err instanceof ZXing.NotFoundException)) {
+        console.error(err);
+        document.getElementById("result").textContent = err;
+      }
+    }
+  );
 }
 
 window.addEventListener("load", () => setup());
