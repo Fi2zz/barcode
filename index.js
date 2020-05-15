@@ -20,8 +20,11 @@ function setup() {
   codeReader.decodeFromVideoDevice(null, "video", (result, err) => {
     if (result) {
       console.log(result);
-      document.getElementById("result").textContent = result.text;
+      alert(`扫描结果 \n${result.text}`);
+    } else {
+      alert("没有结果");
     }
+
     if (err && !(err instanceof NotFoundException)) {
       console.error(err);
       document.getElementById("result").textContent = err;
