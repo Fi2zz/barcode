@@ -15,10 +15,6 @@
   "scripts": {
     "compile": "parcel build index.js",
     "watch": "parcel index.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo 'Compile before commit' &&  npm run compile && echo 'Compiled' "
-    }
   }
+  
 }
