@@ -1,9 +1,6 @@
 import "regenerator-runtime";
 import "webrtc-adapter";
 import {
-  BrowserBarcodeReader,
-  BrowserCodeReader,
-  //   MultiFormatReader,
   BrowserMultiFormatReader,
   NotFoundException,
 } from "@zxing/library/esm";
@@ -16,23 +13,23 @@ function setup() {
 
   video.style.width = width + "px";
   video.style.height = width + "px";
-  const codeReader = new BrowserMultiFormatReader();
-  codeReader.decodeFromVideoDevice(null, "video", (result, err) => {
-    if (result) {
-      console.log(result);
-      alert(`扫描结果 \n${result.text}`);
-    } else {
-      alert("没有结果");
-    }
 
-    if (err && !(err instanceof NotFoundException)) {
-      console.error(err);
-      document.getElementById("result").textContent = err;
-    }
-  });
-  document.getElementById(
-    "log"
-  ).textContent = `Started continous decode from camera with id ${selectedDeviceId}`;
+  const codeReader = new BrowserMultiFormatReader();
+
+  document.getElementById("start").onclick = () => {
+    codeReader.decodeFromVideoDevice(null, "video", (result, err) => {
+      if (result) {
+        console.log(result);
+        alert(`扫描结果 \n${result.text}`);
+        codeReader.reset();
+      }
+      if (err && !(err instanceof NotFoundException)) {
+        console.error(err);
+        document.getElementById("result").textContent = err;
+      }
+    });
+  };
+  document.getElementById("reset").onclick = () => window.location.reload();
 
   //   codeReader.decodeOnceFromConstraints(
   //     {
