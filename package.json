@@ -13,9 +13,11 @@
     "css-loader": "^3.5.3",
     "dart-sass": "^1.25.0",
     "element-ui": "^2.13.1",
+    "file-loader": "^6.0.0",
     "regenerator-runtime": "^0.13.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
@@ -24,6 +26,6 @@
     "webrtc-adapter": "^7.6.0"
   },
   "scripts": {
-    "watch" :"webpack -w"
+    "watch": "webpack -w"
   }
 }

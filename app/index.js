@@ -2,7 +2,7 @@ import Vue from "vue";
 import Scheduler from "./Scheduler";
 import Report from "./Report";
 import Header from "./Header";
-
+import "element-ui/lib/theme-chalk/index.css";
 const ViewsEnum = {
   Scheduler: "Scheduler",
   Report: "Report",

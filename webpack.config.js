@@ -30,6 +30,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.ttf|woff$/,
+        loader:'url-loader'
+      }
     ],
   },
   plugins: [new Vue()],
